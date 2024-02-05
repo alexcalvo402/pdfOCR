@@ -1,9 +1,9 @@
 class Persona {
-    nombre: string;
-    vivienda: string;
+    nom: string;
+    habitatge: string;
 
     constructor(nombre: string, vivienda: string) {
-        this.nombre = nombre;
-        this.vivienda = vivienda;
+        this.nom = nombre;
+        this.habitatge = vivienda;
     }
 }
