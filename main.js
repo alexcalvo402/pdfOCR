@@ -1,6 +1,7 @@
 var datos = undefined;
 var file = undefined;
 var lineas = undefined;
+var jpgArray = [];
 
 window.onload = ()=>{
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@2.9.359/build/pdf.worker.min.js';
@@ -13,7 +14,7 @@ function carregarFitxer(event) {
     if (lv_fileSizeKB <= 1024) {
         file = lv_file;
         //need to convert to JPG
-        file = convertToJPG(file);
+        convertToJPG(file);
     } else {
         alert("Archivo excede 1024kb");
     }
@@ -101,7 +102,7 @@ function transformarDatos() {
 
 
 function convertToJPG(file){
-
+    jpgArray = [];
     const reader = new FileReader();
 
     reader.onload = function (e) {
@@ -117,12 +118,10 @@ function convertToJPG(file){
           promises.push(convertPageToJpg(pdfDoc, pageNumber));
         }
 
-        // Wait for all conversion promises to resolve
-        Promise.all(promises).then(function (jpgDataArray) {
-          // jpgDataArray is an array of Uint8Array representing each page as JPG
+        // Wait for all conversion promises to resolve, means we have all JPG loaded.
+        Promise.all(promises).then(function () {
+          
 
-          // You can do something with the JPG data, for example, display it, save it, etc.
-          console.log(jpgDataArray);
         });
       });
     };
@@ -130,8 +129,6 @@ function convertToJPG(file){
     reader.readAsArrayBuffer(file);
 
 }
-
-
 
 function convertPageToJpg(pdfDoc, pageNumber) {
     return pdfDoc.getPage(pageNumber).then(function (page) {
@@ -148,24 +145,15 @@ function convertPageToJpg(pdfDoc, pageNumber) {
       };
 
       return page.render(renderContext).promise.then(function () {
-        // Convert the canvas content to a data URL representing a JPG image
-        const jpgData = canvas.toDataURL('image/jpeg');
-        // Convert the data URL to a Uint8Array
-        // Create a download link for the JPG file
-        const downloadLink = document.createElement('a');
-        downloadLink.href = jpgData;
-        downloadLink.download = `page_${pageNumber}.jpg`;
-        downloadLink.textContent = `Download Page ${pageNumber}`;
-        downloadLink.target = '_blank';
-        
-        // Append the link to the document body
-        document.body.appendChild(downloadLink);
-        
-        // Trigger a click on the link to start the download
-        downloadLink.click();
-        
-        // Remove the link from the document
-        document.body.removeChild(downloadLink);
+
+        canvas.toBlob(function (blob) {
+            // Create a File object from the Blob
+            const jpgFile = new File([blob], `page_${pageNumber}.jpg`, { type: 'image/jpeg' });
+            jpgArray.push(jpgFile);
+
+        }, 'image/jpeg',1);
       });
+
+
     });
   }
