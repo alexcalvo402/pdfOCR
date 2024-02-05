@@ -47,18 +47,21 @@ function clickBoto() {
 
 }
 
-var lunes = [];
-var martes = [];
-var miercoles = [];
-var jueves = [];
-var viernes = [];
+var datos = {
+    "lunes":[],
+    "martes":[],
+    "miercoles":[],
+    "jueves":[],
+    "viernes":[],
+};
+
 function transformarDatos() {
 
     lineas.forEach((linea) => {
         for (let i = 0; i < linea.Words.length; i++) {
             let word = linea.Words[i];
             if (word.Left == 691) {
-                miercoles.push(linea);
+                datos.miercoles.push(linea);
                 break;
             }
         };
