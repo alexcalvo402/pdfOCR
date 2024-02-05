@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { GoogleMapsService } from 'src/app/services/GoogleMaps.service';
 
 @Component({
   selector: 'app-index',
@@ -15,4 +16,9 @@ export class IndexComponent {
   onSubmit() {
     console.log(this.formData);
   }
+
+constructor(private gmapsService: GoogleMapsService){
+}
+
+
 }
