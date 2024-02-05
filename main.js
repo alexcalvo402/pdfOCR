@@ -47,7 +47,7 @@ function clickBoto() {
 
 }
 
-var datos = {
+var datosTransformados = {
     "lunes":[],
     "martes":[],
     "miercoles":[],
@@ -61,7 +61,11 @@ function transformarDatos() {
         for (let i = 0; i < linea.Words.length; i++) {
             let word = linea.Words[i];
             if (word.Left == 691) {
-                datos.miercoles.push(linea);
+                datosTransformados.miercoles.push(linea);
+                break;
+            }
+            if(word.Left > 490 && word.Left <700){
+                datosTransformados.jueves.push(linea);
                 break;
             }
         };
