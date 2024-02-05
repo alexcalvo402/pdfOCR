@@ -7,7 +7,6 @@ window.onload = ()=>{
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@2.9.359/build/pdf.worker.min.js';
 }
 
-
 function carregarFitxer(event) {
     let lv_file = event.currentTarget.files[0];;
     let lv_fileSizeKB = lv_file.size / 1024;
@@ -25,7 +24,7 @@ function clickBoto() {
     //Prepare form data
     var formData = new FormData();
 
-    formData.append("file", file);
+    formData.append("file", jpgArray[0]);
     formData.append("language", "spa");
     formData.append("apikey", "K84034668688957");//K84034668688957
     formData.append("isOverlayRequired", true);
@@ -53,38 +52,7 @@ var martes = [];
 var miercoles = [];
 var jueves = [];
 var viernes = [];
-function transformarDatos() {
-
-    /*lineas.forEach((linea) => {
-        for (let i = 0; i < linea.Words.length; i++) {
-            let word = linea.Words[i];
-
-            let top = 217;
-            let found = false;
-            for (let i = 0; i <= 24; i++) {
-                top = 217;
-                top = top + (97 * i);
-                let toFind = word.Top - top;
-                if (toFind > -5 && toFind < 5) {
-                    found = true;
-                    break;
-                }
-
-            }
-            top = 217;
-            if (found) {
-
-                if (word.Left > 700 && word.Left < 900) {
-                    capcaleres.push(linea);
-                    break;
-                }
-            }
-
-        };
-
-    });*/
-
-    
+function transformarDatos() {    
 
     lineas.forEach((linea) => {
         for (let i = 0; i < linea.Words.length; i++) {
@@ -132,7 +100,7 @@ function convertToJPG(file){
 
 function convertPageToJpg(pdfDoc, pageNumber) {
     return pdfDoc.getPage(pageNumber).then(function (page) {
-      const viewport = page.getViewport({ scale: 10 });
+      const viewport = page.getViewport({ scale: 1 });
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
 
