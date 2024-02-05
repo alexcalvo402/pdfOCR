@@ -3,7 +3,7 @@ var file = undefined;
 var lineas = undefined;
 var jpgArray = [];
 
-window.onload = ()=>{
+window.onload = () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@2.9.359/build/pdf.worker.min.js';
 }
 
@@ -52,7 +52,7 @@ var martes = [];
 var miercoles = [];
 var jueves = [];
 var viernes = [];
-function transformarDatos() {    
+function transformarDatos() {
 
     lineas.forEach((linea) => {
         for (let i = 0; i < linea.Words.length; i++) {
@@ -69,29 +69,29 @@ function transformarDatos() {
 
 
 
-function convertToJPG(file){
+function convertToJPG(file) {
     jpgArray = [];
     const reader = new FileReader();
 
     reader.onload = function (e) {
-      const data = new Uint8Array(e.target.result);
+        const data = new Uint8Array(e.target.result);
 
-      // Load the PDF using pdf.js
-      pdfjsLib.getDocument({ data }).promise.then(function (pdfDoc) {
-        const numPages = pdfDoc.numPages;
-        const promises = [];
+        // Load the PDF using pdf.js
+        pdfjsLib.getDocument({ data }).promise.then(function (pdfDoc) {
+            const numPages = pdfDoc.numPages;
+            const promises = [];
 
-        // Iterate through each page and convert it to JPG
-        for (let pageNumber = 1; pageNumber <= numPages; pageNumber++) {
-          promises.push(convertPageToJpg(pdfDoc, pageNumber));
-        }
+            // Iterate through each page and convert it to JPG
+            for (let pageNumber = 1; pageNumber <= numPages; pageNumber++) {
+                promises.push(convertPageToJpg(pdfDoc, pageNumber));
+            }
 
-        // Wait for all conversion promises to resolve, means we have all JPG loaded.
-        Promise.all(promises).then(function () {
-          
+            // Wait for all conversion promises to resolve, means we have all JPG loaded.
+            Promise.all(promises).then(function () {
 
+
+            });
         });
-      });
     };
 
     reader.readAsArrayBuffer(file);
@@ -100,28 +100,38 @@ function convertToJPG(file){
 
 function convertPageToJpg(pdfDoc, pageNumber) {
     return pdfDoc.getPage(pageNumber).then(function (page) {
-      const viewport = page.getViewport({ scale: 1 });
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
+        const viewport = page.getViewport({ scale: 1 });
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
 
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
 
-      const renderContext = {
-        canvasContext: ctx,
-        viewport: viewport,
-      };
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport,
+        };
 
-      return page.render(renderContext).promise.then(function () {
+        return page.render(renderContext).promise.then(function () {
 
-        canvas.toBlob(function (blob) {
-            // Create a File object from the Blob
-            const jpgFile = new File([blob], `page_${pageNumber}.jpg`, { type: 'image/jpeg' });
-            jpgArray.push(jpgFile);
+            canvas.toBlob(function (blob) {
+                // Create a File object from the Blob
+                const jpgFile = new File([blob], `page_${pageNumber}.jpg`, { type: 'image/jpeg' });
+                jpgArray.push(jpgFile);
 
-        }, 'image/jpeg',1);
-      });
+                var ctx = document.getElementById('the-canvas').getContext('2d');
+                var url = URL.createObjectURL(jpgFile);
+                var img = new Image();
+                img.onload = function () {
+                    ctx.drawImage(img, 20, 20);
+                }
+                img.src = url;
+
+            }, 'image/jpeg', 1);
+
+
+        });
 
 
     });
-  }
+}
