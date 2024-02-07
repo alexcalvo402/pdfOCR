@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Persona } from 'src/models/classes/persona';
 
 @Component({
   selector: 'app-formularis',
@@ -21,7 +20,5 @@ export class FormularisComponent {
     console.log(this.treballadorData);
   }
 
-  ngAfterViewInit(){
-    Persona.getPersona(4);
-  }
+
 }
