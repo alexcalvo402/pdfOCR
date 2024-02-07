@@ -7,18 +7,23 @@ import { GoogleMapsService } from 'src/app/services/GoogleMaps.service';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class IndexComponent { 
-  formData = {
+export class IndexComponent {
+  treballadorData = {
+    nom: '',
+    habitatge: ''
+  };
+
+  clientData = {
     nom: '',
     habitatge: ''
   };
 
   onSubmit() {
-    console.log(this.formData);
+    console.log(this.treballadorData);
   }
 
-constructor(private gmapsService: GoogleMapsService){
-}
+  constructor(private gmapsService: GoogleMapsService) {
+  }
 
 
 }
