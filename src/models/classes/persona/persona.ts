@@ -3,12 +3,12 @@ import { inject } from "@angular/core";
 import { PersonaService } from "./persona.service";
 
 export class Persona {
-    id: number;
+    id!:string;
     nom: string;
     habitatge: string;
     tipus: string;
 
-    constructor(id: number, nombre: string, habitatge: string, tipus: string) {
+    constructor(id: string, nombre: string, habitatge: string, tipus: string) {
         this.id = id;
         this.nom = nombre;
         this.habitatge = habitatge;
