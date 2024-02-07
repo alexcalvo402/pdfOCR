@@ -15,8 +15,8 @@ export class GoogleMapsService {
   calculateDistance(userOrigin: Persona, userDestination:Persona):Promise<any>{
     let url = `https://maps.googleapis.com/maps/api/distancematrix/json?`;
     let params = {
-      "origins": userOrigin.vivienda,
-      "destinations": userDestination.vivienda,
+      "origins": userOrigin.habitatge,
+      "destinations": userDestination.habitatge,
       "units":"metric",
       "key":apikey
     }

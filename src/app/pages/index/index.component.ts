@@ -8,6 +8,14 @@ import { GoogleMapsService } from 'src/app/services/GoogleMaps.service';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent { 
+  formData = {
+    nom: '',
+    habitatge: ''
+  };
+
+  onSubmit() {
+    console.log(this.formData);
+  }
 
 constructor(private gmapsService: GoogleMapsService){
   
