@@ -5,7 +5,7 @@ import { FormularisComponent } from './pages/formularis/formularis.component';
 
 const routes: Routes = [
   { path: "", component: IndexComponent },
-  { path: "/formularis", component: FormularisComponent },
+  { path: "formularis", component: FormularisComponent },
   { path: "**", redirectTo: '' }
 ];
 

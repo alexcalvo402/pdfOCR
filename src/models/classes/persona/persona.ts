@@ -3,6 +3,7 @@ import { inject } from "@angular/core";
 import { PersonaService } from "./persona.service";
 
 export class Persona {
+    id!:string;
     nom: string;
     habitatge: string;
     tipus: string;
