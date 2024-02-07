@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
 import { firstValueFrom } from 'rxjs';
 import { apikey } from 'src/environment/environment';
-import { Persona} from 'src/models/classes/persona';
+import { Persona} from 'src/models/classes/persona/persona';
 @Injectable({
   providedIn: 'root'
 })

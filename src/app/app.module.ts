@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexComponent } from './pages/index/index.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import {HttpClientModule} from '@angular/common/http';
+import { PersonaService } from 'src/models/classes/persona/persona.service';
 @NgModule({
   declarations: [
     AppComponent,

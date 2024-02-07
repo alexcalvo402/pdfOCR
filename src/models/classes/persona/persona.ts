@@ -1,4 +1,7 @@
+import { HttpClient } from "@angular/common/http";
+import { inject } from "@angular/core";
 import { databasePath } from "src/environment/environment.prod";
+import { PersonaService } from "./persona.service";
 
 export class Persona {
     nom: string;
@@ -9,19 +12,5 @@ export class Persona {
         this.habitatge = vivienda;
     }
 
-    save(){
-
-    }
-
-    update(){
-
-    }
-
-    public static get(id:number):any{
-        fetch(databasePath).then((response)=>{
-            console.log(response);
-        })
-        return undefined;
-    }
 }
 
