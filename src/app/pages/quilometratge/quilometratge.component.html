@@ -1,0 +1,24 @@
+@if (ocultarTreballador) {
+    <section class="grid grid-cols-12 p-4 mt-4">
+        <form
+            class="col-span-12 md:col-start-4 lg:col-start-4 md:col-end-10 lg:col-end-10 flex flex-col bg-yellow-300 p-4 rounded"
+            (ngSubmit)="selTreballador()" #treballadorSelectedForm="ngForm">
+            <h1 class="text-center font-bold text-lg">Selecció Treballador</h1>
+
+            <label class="font-bold" for="id">Treballador:</label>
+            <select class="border-2 border-black p-1" id="idTreballador" [(ngModel)]="treballadorSelectedData.id"
+                name="idTreballador" required>
+                <option *ngFor="let treballador of treballadors" [value]="treballador.id">{{treballador.nom}}</option>
+            </select>
+            <br>
+            <button [disabled]="!treballadorSelectedForm.valid || treballadorSelectedData.id == 0" type="submit">
+                <span
+                    [ngClass]="{'disabled:bg-yellow-300 bg-opacity-40 text-gray-200': !treballadorSelectedForm.valid || treballadorSelectedData.id == 0, 'hover:bg-yellow-500': treballadorSelectedForm.valid && treballadorSelectedData.id != 0}"
+                    class="bg-yellow-400 px-4 py-1 font-bold rounded">Seleccionar</span>
+            </button>
+        </form>
+
+        {{treballadorSelectedData | json}}
+        {{ocultarTreballador}}
+    </section>
+}
