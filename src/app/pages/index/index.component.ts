@@ -22,8 +22,9 @@ export class IndexComponent {
     console.log(this.treballadorData);
   }
 
-  constructor(private gmapsService: GoogleMapsService) {
-  }
+constructor(private gmapsService: GoogleMapsService){
+  
+}
 
 
 }
