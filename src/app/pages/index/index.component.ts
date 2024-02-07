@@ -8,27 +8,12 @@ import { Persona } from 'src/models/classes/persona';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent {
-  treballadorData = {
-    nom: '',
-    habitatge: ''
-  };
 
-  clientData = {
-    nom: '',
-    habitatge: ''
-  };
-
-  onSubmit() {
-    console.log(this.treballadorData);
-  }
 
   constructor(private gmapsService: GoogleMapsService) {
 
   }
 
-  ngAfterViewInit(){
-    Persona.getPersona(4);
-  }
 
 
 }

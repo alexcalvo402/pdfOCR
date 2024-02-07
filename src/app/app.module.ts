@@ -7,10 +7,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexComponent } from './pages/index/index.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import {HttpClientModule} from '@angular/common/http';
+import { FormularisComponent } from './pages/formularis/formularis.component';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
+    FormularisComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
