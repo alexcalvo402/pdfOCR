@@ -27,7 +27,7 @@ export class IndexComponent {
   }
 
   ngAfterViewInit(){
-    Persona.getPersona(4);
+    Persona.get(4);
   }
 
 

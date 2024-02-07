@@ -9,11 +9,15 @@ export class Persona {
         this.habitatge = vivienda;
     }
 
-    guardar(){
+    save(){
 
     }
 
-    public static getPersona(id:number):any{
+    update(){
+
+    }
+
+    public static get(id:number):any{
         fetch(databasePath).then((response)=>{
             console.log(response);
         })
