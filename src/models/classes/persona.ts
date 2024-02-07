@@ -1,4 +1,4 @@
-class Persona {
+export class Persona {
     nombre: string;
     vivienda: string;
 
@@ -7,3 +7,4 @@ class Persona {
         this.vivienda = vivienda;
     }
 }
+

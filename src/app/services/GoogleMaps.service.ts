@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
 import { firstValueFrom } from 'rxjs';
 import { apikey } from 'src/environment/environment';
+import { Persona} from 'src/models/classes/persona';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,11 +12,11 @@ export class GoogleMapsService {
   constructor(private httpService: HttpClient) { 
   }
 
-  calculateDistance(userOrigin: any, userDestination:any):Promise<any>{
+  calculateDistance(userOrigin: Persona, userDestination:Persona):Promise<any>{
     let url = `https://maps.googleapis.com/maps/api/distancematrix/json?`;
     let params = {
-      "origins": "C/ Miquel Servet 20, 2n, OLOT",
-      "destinations": "C/ Roser 48, 2n 5a, OLOT",
+      "origins": userOrigin.vivienda,
+      "destinations": userDestination.vivienda,
       "units":"metric",
       "key":apikey
     }
@@ -25,10 +26,7 @@ export class GoogleMapsService {
     return firstValueFrom(this.httpService.get(url)).then((data)=>{
       console.log(data);
     })
-    
-
-
-   
+  
     
   }
 

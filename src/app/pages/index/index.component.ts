@@ -10,6 +10,7 @@ import { GoogleMapsService } from 'src/app/services/GoogleMaps.service';
 export class IndexComponent { 
 
 constructor(private gmapsService: GoogleMapsService){
+  
 }
 
 
