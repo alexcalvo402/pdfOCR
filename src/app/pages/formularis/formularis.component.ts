@@ -27,6 +27,7 @@ export class FormularisComponent {
 
   onSubmit() {
     console.log(this.treballadorData);
+    console.log(this.clientData);
   }
 
   onSubmitTreballador(){

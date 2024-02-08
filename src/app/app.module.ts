@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormularisComponent } from './pages/formularis/formularis.component';
 import { HeaderComponent } from './header/header.component';
 import { PersonaService } from 'src/models/classes/persona/persona.service';
+import { QuilometratgeComponent } from './pages/quilometratge/quilometratge.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PersonaService } from 'src/models/classes/persona/persona.service';
     IndexComponent,
     FormularisComponent,
     HeaderComponent,
+    QuilometratgeComponent,
   ],
   imports: [
     BrowserModule,
