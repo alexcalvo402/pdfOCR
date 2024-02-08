@@ -7,28 +7,36 @@ import { Persona } from './persona';
     providedIn: 'root'
 })
 export class PersonaService {
-    url = "localhost:80/persona.php"
     constructor(private http: HttpClient) {
         
     }
 
     insert(persona:Persona) {
-        this.http.post(`localhost:80/persona`,JSON.stringify(persona));
+        console.log(persona);
+        this.http.post(`http://localhost/persona`,persona).subscribe((data)=>{
+            console.log(data);
+        });
     }
 
     update(persona:Persona) {
         let id = persona.id;
-        this.http.put<Persona>(`localhost:80/persona/${id}`, JSON.stringify(persona));
+        this.http.put<Persona>(`http://localhost/persona/${id}`, JSON.stringify(persona));
     }
 
     get(id: number): any {
-        this.http.get(`localhost:80/persona/${id}`).subscribe(res => {
+        this.http.get(`http://localhost/persona/${id}`).subscribe(res => {
             console.log(res);
         })
     }
 
     remove(id:number):any{
-        this.http.delete(`localhost:80/persona/${id}`);
+        this.http.delete(`http://localhost/persona/${id}`);
+    }
+
+    test(){
+        this.http.get(`http://localhost`).subscribe((data)=>{
+            console.log(data);
+        })
     }
 
 }
