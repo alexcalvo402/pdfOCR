@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { PersonaService } from 'src/models/classes/persona/persona.service';
 
 @Component({
   selector: 'app-quilometratge',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./quilometratge.component.scss']
 })
 export class QuilometratgeComponent {
+  protected personaService:PersonaService = inject(PersonaService);
+  
   ocultarTreballador = false;
 
   treballadorSelectedData = {
@@ -20,27 +23,18 @@ export class QuilometratgeComponent {
     aPersona: 0,
   };
 
-  treballadors = [
-    {
-      id: 1,
-      nom: 'Pep',
-      habitatge: 'C/ Blai 33'
-    },
-    {
-      id: 2,
-      nom: 'Maria',
-      habitatge: 'C/ Blai 32'
-    },
-    {
-      id: 3,
-      nom: 'Joan',
-      habitatge: 'C/ Blai 31'
-    }
-  ];
+  treballadors:any;
+
+  ngAfterViewInit(){
+    this.personaService.get().subscribe((data)=>{
+      this.treballadors = data;
+    })
+  }
+  
 
   selTreballador() {
     // Find the selected treballador
-    let treballadorInfo = this.treballadors.find(treballador => treballador.id == this.treballadorSelectedData.id);
+    let treballadorInfo = this.treballadors.find((treballador:any) => treballador.id == this.treballadorSelectedData.id);
     this.treballadorSelectedData = treballadorInfo!;
 
     // Hide the treballador selection

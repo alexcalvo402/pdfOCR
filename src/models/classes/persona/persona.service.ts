@@ -13,28 +13,32 @@ export class PersonaService {
 
     insert(persona:Persona) {
         console.log(persona);
-        this.http.post(`http://localhost/persona`,persona).subscribe((data)=>{
+        this.http.post(`http://localhost/api/persona`,persona).subscribe((data)=>{
             console.log(data);
         });
     }
 
     update(persona:Persona) {
         let id = persona.id;
-        this.http.put<Persona>(`http://localhost/persona/${id}`, JSON.stringify(persona));
+        this.http.put<Persona>(`http://localhost/api/persona/${id}`, JSON.stringify(persona));
     }
 
-    get(id: number): any {
-        this.http.get(`http://localhost/persona/${id}`).subscribe(res => {
-            console.log(res);
-        })
+    get(id?: number) {
+
+        if(id){
+            return this.http.get(`http://localhost/api/persona/${id}`)
+        }else{
+            return this.http.get(`http://localhost/api/persona`)
+        }
+
     }
 
     remove(id:number):any{
-        this.http.delete(`http://localhost/persona/${id}`);
+        this.http.delete(`http://localhost/api/persona/${id}`);
     }
 
     test(){
-        this.http.get(`http://localhost`).subscribe((data)=>{
+        this.http.get(`http://localhost/api/persona/`).subscribe((data)=>{
             console.log(data);
         })
     }
